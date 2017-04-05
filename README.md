@@ -1,5 +1,7 @@
 # REST101
-A basic project to get you started with Jersey
+A basic project to get you started with Jersey.
+
+We can get responses in plain text and JSON. We can also store and retrieve JSON via HTTP to a MapDB.
 
 ## How to create the base archetype:
 ```bash
