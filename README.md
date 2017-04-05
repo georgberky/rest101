@@ -11,3 +11,13 @@ mvn clean package exec:java
 
 ## Where to find your resource?
 http://localhost:8080/myapp/myresource
+
+## How to GET JSON
+```bash
+curl -v --header "Accept:application/json" http://localhost:8080/myapp/myresource
+```
+
+## How to PUT JSON
+```bash
+curl -v -X PUT -H "Content-Type:application/json" -d '{"message":"Hello World"}' http://localhost:8080/myapp/myresource
+```
