@@ -20,4 +20,14 @@ public class MapDbStoreTest {
 
         assertThat(plain, equalTo("Got it!"));
     }
+
+    @Test
+    public void canStoreAndReload() throws Exception {
+        GotIt toStore = new GotIt("message");
+
+        store.save(1, toStore);
+        GotIt loaded = store.load(1).get();
+
+        assertThat(loaded, equalTo(toStore));
+    }
 }

@@ -2,6 +2,7 @@ package de.gb.rest;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
@@ -10,9 +11,13 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 public class GotItResourceTest {
+
+    private static final String GOTIT_JSON = "{\n" + "  \"message\": \"Got it!\"\n" + "}";
 
     private HttpServer server;
     private WebTarget target;
@@ -40,21 +45,35 @@ public class GotItResourceTest {
 
     @Test
     public void plainText() {
-        String responseMsg = target.path("gotit")
+        String responseMsg = target.path("/gotit")
                 .request()
                 .accept(MediaType.TEXT_PLAIN)
                 .get(String.class);
 
-        assertEquals("Got it!", responseMsg);
+        assertThat(responseMsg, equalTo("Got it!"));
     }
 
     @Test
     public void json() {
-        String responseMsg = target.path("gotit")
+        String responseMsg = target.path("/gotit")
                 .request()
                 .accept(MediaType.APPLICATION_JSON)
                 .get(String.class);
 
-        assertEquals("{\n" + "  \"message\": \"Got it!\"\n" + "}", responseMsg);
+        assertThat(responseMsg, equalTo(GOTIT_JSON));
+    }
+
+    @Test
+    public void putAndGetJson() throws Exception {
+        target.path("/gotit/1")
+                .request()
+                .put(Entity.entity(GOTIT_JSON, MediaType.APPLICATION_JSON_TYPE), String.class);
+
+        String response = target.path("/gotit/1")
+                .request()
+                .get(String.class);
+
+
+        assertThat(response, equalTo(GOTIT_JSON));
     }
 }
