@@ -10,20 +10,19 @@ import javax.ws.rs.core.Response;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-/**
- * Root resource (exposed at "myresource" path)
- */
-@Path("myresource")
-public class MyResource {
+@Path("gotit")
+public class GotItResource {
 
     private static final Gson gson = new GsonBuilder()
             .setPrettyPrinting()
             .create();
 
+    private Service service;
+
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
-        return "Got it!";
+        return service.loadPlain();
     }
 
     @GET
@@ -42,16 +41,7 @@ public class MyResource {
         return Response.ok(gotIt.getMessage()).build();
     }
 
-    private class GotIt {
-
-        final private String message;
-
-        public GotIt(String message) {
-            this.message = message;
-        }
-
-        public String getMessage() {
-            return message;
-        }
+    public void setService(Service service) {
+        this.service = service;
     }
 }

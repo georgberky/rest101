@@ -10,14 +10,18 @@ mvn archetype:generate -DarchetypeArtifactId=jersey-quickstart-grizzly2 -Darchet
 mvn clean package exec:java
 
 ## Where to find your resource?
-http://localhost:8080/myapp/myresource
+```bash
+curl -v -H "Accept:text/plain" http://localhost:8080/myapp/gotit
+```
+
+Or make your browser go to: <http://localhost:8080/myapp/gotit>
 
 ## How to GET JSON
 ```bash
-curl -v --header "Accept:application/json" http://localhost:8080/myapp/myresource
+curl -v --header "Accept:application/json" http://localhost:8080/myapp/gotit
 ```
 
 ## How to PUT JSON
 ```bash
-curl -v -X PUT -H "Content-Type:application/json" -d '{"message":"Hello World"}' http://localhost:8080/myapp/myresource
+curl -v -X PUT -H "Content-Type:application/json" -d '{"message":"Hello World"}' http://localhost:8080/myapp/gotit
 ```

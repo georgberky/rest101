@@ -40,6 +40,7 @@
     <orderEntry type="library" name="Maven: com.google.guava:guava:19.0.20150826" level="project" />
     <orderEntry type="library" name="Maven: net.jpountz.lz4:lz4:1.3.0" level="project" />
     <orderEntry type="library" name="Maven: org.mapdb:elsa:3.0.0-M5" level="project" />
+    <orderEntry type="library" name="Maven: org.picocontainer:picocontainer:2.15" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-junit:2.0.0.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:java-hamcrest:2.0.0.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.12" level="project" />

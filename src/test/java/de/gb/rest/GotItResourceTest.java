@@ -3,6 +3,7 @@ package de.gb.rest;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
 
 import org.glassfish.grizzly.http.server.HttpServer;
 
@@ -11,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-public class MyResourceTest {
+public class GotItResourceTest {
 
     private HttpServer server;
     private WebTarget target;
@@ -37,12 +38,23 @@ public class MyResourceTest {
         server.stop();
     }
 
-    /**
-     * Test to see that the message "Got it!" is sent in the response.
-     */
     @Test
-    public void testGetIt() {
-        String responseMsg = target.path("myresource").request().get(String.class);
+    public void plainText() {
+        String responseMsg = target.path("gotit")
+                .request()
+                .accept(MediaType.TEXT_PLAIN)
+                .get(String.class);
+
         assertEquals("Got it!", responseMsg);
+    }
+
+    @Test
+    public void json() {
+        String responseMsg = target.path("gotit")
+                .request()
+                .accept(MediaType.APPLICATION_JSON)
+                .get(String.class);
+
+        assertEquals("{\n" + "  \"message\": \"Got it!\"\n" + "}", responseMsg);
     }
 }
