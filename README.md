@@ -7,7 +7,9 @@ mvn archetype:generate -DarchetypeArtifactId=jersey-quickstart-grizzly2 -Darchet
 ```
 
 ## How to run
+```bash
 mvn clean package exec:java
+```
 
 ## Where to find your resource in plain text?
 ```bash
